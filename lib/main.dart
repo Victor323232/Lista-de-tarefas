@@ -4,6 +4,7 @@ import 'package:lista_de_tarefas/Home.dart';
 void main() {
   runApp(MaterialApp(
     home: Home(),
+    debugShowCheckedModeBanner: false ,
   ));
 }
 
