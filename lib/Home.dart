@@ -42,6 +42,7 @@ class _HomeState extends State<Home> {
 
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton.extended(
           onPressed: (){},
           label: Text("Adicionar"),
@@ -50,11 +51,9 @@ class _HomeState extends State<Home> {
         foregroundColor: Colors.white,
         elevation: 30,
         shape: BeveledRectangleBorder(
-            borderRadius: BorderRadius.circular(30)
+            borderRadius: BorderRadius.circular(10)
         ),
 
-      ),
-      bottomNavigationBar: BottomAppBar(
       ),
     );
   }
