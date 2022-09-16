@@ -9,6 +9,17 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+  List _tarefas = [];
+  void _carregarTarefas(){
+    _tarefas = [];
+    for( int i = 0; i < 10;i++ ){
+      Map<String, dynamic> tarefa = Map();
+      tarefa["titulo"] = "Titulo ${i} Lorem";
+      tarefa["descricao"] = "Descricao ${i} Lorem";
+      _tarefas.add(tarefa);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +27,15 @@ class _HomeState extends State<Home> {
         title: Text("Lista de tarefas"),
         backgroundColor: Colors.deepPurple,
       ),
-      body: Container(),
+      body: Container(
+        padding: EdgeInsets.all(20),
+        child: ListView.builder(
+          itemBuilder: (context, indice){
+
+          },
+          itemCount: _tarefas.length,
+        ),
+      ),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: (){},
           label: Text("Adicionar"),
