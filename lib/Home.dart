@@ -22,6 +22,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    _carregarTarefas(); //retorna tarefas
     return Scaffold(
       appBar: AppBar(
         title: Text("Lista de tarefas"),
@@ -30,10 +31,15 @@ class _HomeState extends State<Home> {
       body: Container(
         padding: EdgeInsets.all(20),
         child: ListView.builder(
-          itemBuilder: (context, indice){
-
-          },
           itemCount: _tarefas.length,
+          itemBuilder: (context, indice){
+            Map<String, dynamic> item = _tarefas[indice];
+            return ListTile(
+              title: Text(_tarefas[indice]["titulo"]),
+              subtitle: Text(_tarefas[indice]["descricao"]),
+            );
+          },
+
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
