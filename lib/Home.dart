@@ -28,8 +28,9 @@ class _HomeState extends State<Home> {
         title: Text("Lista de tarefas"),
         backgroundColor: Colors.deepPurple,
       ),
-      body: Container(
-        padding: EdgeInsets.all(20),
+      body: Column(
+        children: <Widget>[
+        Expanded(
         child: ListView.builder(
           itemCount: _tarefas.length,
           itemBuilder: (context, indice){
@@ -42,9 +43,38 @@ class _HomeState extends State<Home> {
 
         ),
       ),
+      ],
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton.extended(
-          onPressed: (){},
+          onPressed: (){
+            showDialog(
+                context: context,
+                builder: (context){
+                  return AlertDialog(
+                    title: Text("Adicionar Tarefa"),
+                    content: TextField(
+                      decoration: InputDecoration(
+                        labelText: "Digite sua tarefa"
+                      ),
+                      onChanged: (text){
+
+                      },
+                    ),
+                    actions: <Widget>[
+                      TextButton(
+                          onPressed: ()=> Navigator.pop(context),
+                          child: Text("Cancelar")),
+                      TextButton(
+                          onPressed: (){
+                            Navigator.pop(context);
+                          },
+                          child: Text("Salvar"))
+                    ],
+                  );
+                }
+                );
+          },
           label: Text("Adicionar"),
         icon: Icon(Icons.add),
         backgroundColor: Colors.deepPurple,
