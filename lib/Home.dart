@@ -15,21 +15,21 @@ class _HomeState extends State<Home> {
 
   List _tarefas = [];
 
-  Future<File>_getFile() async {
+  Future<File> _getFile() async {
     final diretorio = await getApplicationDocumentsDirectory();
     return File("${diretorio.path}/dados.json"); //caminho diretorio
   }
 
   _salvarTarefa() async{
     var arquivo = await _getFile();
+    //criar dados
+    Map<String, dynamic> tarefa = Map();
+    tarefa["titulo"] = "Ir ao mercado";
+    tarefa["realizada"] = false;
+    _tarefas.add(tarefa);
 
     String dados = jsonEncode(_tarefas); //convercao
     arquivo.writeAsString(dados); //salvar tarefas
-
-    Map<String, dynamic> tarefa = Map();
-    tarefa["titulo"] = "Ir ao mercado;"
-    tarefa["realizada"] = false;
-    _tarefas.add(tarefa);
   }
   _lerTarefa( ) async {
     try{ //tentar ler uma tarefa
@@ -43,16 +43,17 @@ class _HomeState extends State<Home> {
   @override
   void initState(){ //realizar altecao antes de carregar metodo build
     super.initState();
-    _lerTarefa().then((dados){ //entao
+    _lerTarefa().then( (dados){ //entao
       setState(() {
-        _tarefas = jsonDecode (dados);
+        _tarefas = json.decode(dados);
       });
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    //_tarefas(); //retorna tarefas
+    //salvarTarefa();
+    //print("itens:"+ _tarefas.toString());
     return Scaffold(
       appBar: AppBar(
         title: Text("Lista de tarefas"),
@@ -66,7 +67,7 @@ class _HomeState extends State<Home> {
           itemBuilder: (context, index){
             // Map<String, dynamic> item = _tarefas[indice];
             return ListTile(
-              title: Text(_tarefas [index] ),
+              title: Text( _tarefas [index] ['titulo'] ),
             );
           },
 
