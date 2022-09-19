@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
 
   List _tarefas = [];
 
-  _getFile() async {
+  Future<File> _getFile() async {
     final diretorio = await getApplicationDocumentsDirectory();
     return File("${diretorio.path}/dados.json"); //caminho diretorio
   }
@@ -33,6 +33,7 @@ class _HomeState extends State<Home> {
   }
   _lerTarefa( ) async {
     try{ //tentar ler uma tarefa
+        final arquivo = await _getFile();
 
     }catch(e){
       return null;
