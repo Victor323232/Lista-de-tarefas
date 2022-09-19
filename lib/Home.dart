@@ -32,7 +32,11 @@ class _HomeState extends State<Home> {
     _tarefas.add(tarefa);
   }
   _lerTarefa( ) async {
-    var arquivo = await _getFile();
+    try{ //tentar ler uma tarefa
+
+    }catch(e){
+      return null;
+    }
   }
 
 
