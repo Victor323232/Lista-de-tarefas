@@ -14,13 +14,15 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   List _tarefas = [];
+   TextEditingController _controllerTarefa = TextEditingController();
 
   Future<File> _getFile() async {
     final diretorio = await getApplicationDocumentsDirectory();
     return File("${diretorio.path}/dados.json"); //caminho diretorio
   }
 
-  _salvarTarefa() async{
+
+  _salvarArquivo() async{
     var arquivo = await _getFile();
     //criar dados
     Map<String, dynamic> tarefa = Map();
@@ -52,7 +54,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    _salvarTarefa();
+    _salvarArquivo();
     //print("itens:"+ _tarefas.toString());
     return Scaffold(
       appBar: AppBar(
@@ -84,6 +86,7 @@ class _HomeState extends State<Home> {
                   return AlertDialog(
                     title: Text("Adicionar Tarefa"),
                     content: TextField(
+                      controller: _controllerTarefa,
                       decoration: InputDecoration(
                         labelText: "Digite sua tarefa"
                       ),
