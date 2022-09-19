@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
     tarefa["realizada"] = false;
     _tarefas.add(tarefa);
 
-    String dados = jsonEncode(_tarefas); //convercao
+    String dados = json.encode(_tarefas); //convercao
     arquivo.writeAsString(dados); //salvar tarefas
   }
   _lerTarefa( ) async {
@@ -52,7 +52,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    //salvarTarefa();
+    _salvarTarefa();
     //print("itens:"+ _tarefas.toString());
     return Scaffold(
       appBar: AppBar(
