@@ -27,8 +27,11 @@ class _HomeState extends State<Home> {
     Map<String, dynamic> tarefa = Map();
     tarefa["titulo"] = textoDigitado;
     tarefa["realizada"] = false;
-
-    _tarefas.add(tarefa);
+    setState(() {
+      _tarefas.add(tarefa);
+    });
+    _salvarArquivo();
+    _controllerTarefa.text= ""; //livre de texto inicial
   }
 
   _salvarArquivo() async{
@@ -71,10 +74,19 @@ class _HomeState extends State<Home> {
         child: ListView.builder(
           itemCount: _tarefas.length,
           itemBuilder: (context, index){
-            // Map<String, dynamic> item = _tarefas[indice];
-            return ListTile(
-              title: Text( _tarefas [index] ['titulo'] ),
-            );
+             return CheckboxListTile(
+               title: Text( _tarefas [index] ['titulo'] ),
+               value: _tarefas [index] ['realizada'],
+               onChanged: (valorAlterado){
+                 setState(() {
+                   _tarefas [index] ['realizada'] = valorAlterado;
+                 });
+                  _salvarArquivo();
+               },
+             );
+            // return ListTile(
+            //   title: Text( _tarefas [index] ['titulo'] ),
+            // );
           },
 
         ),
@@ -104,7 +116,7 @@ class _HomeState extends State<Home> {
                           child: Text("Cancelar")),
                       TextButton(
                           onPressed: (){
-                            Navigator.pop(context);
+                            _salvarTarefa();
                           },
                           child: Text("Salvar"))
                     ],
