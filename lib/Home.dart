@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
   _lerTarefa( ) async {
     try{ //tentar ler uma tarefa
         final arquivo = await _getFile();
-
+        arquivo.readAsString(); //recuperar arquivo
     }catch(e){
       return null;
     }
