@@ -41,12 +41,6 @@ class _HomeState extends State<Home> {
   }
 
 
-  // void _carregarTarefas(){
-  //   _tarefas = [];
-  //   for( int i = 0; i < 10;i++ ){
-  //   }
- // }
-
   @override
   Widget build(BuildContext context) {
     //_tarefas(); //retorna tarefas
