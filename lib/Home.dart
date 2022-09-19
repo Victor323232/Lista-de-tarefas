@@ -86,7 +86,7 @@ class _HomeState extends State<Home> {
                   return AlertDialog(
                     title: Text("Adicionar Tarefa"),
                     content: TextField(
-                      controller: _controllerTarefa,
+                      controller:_controllerTarefa,
                       decoration: InputDecoration(
                         labelText: "Digite sua tarefa"
                       ),
