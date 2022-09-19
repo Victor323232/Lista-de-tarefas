@@ -39,7 +39,11 @@ class _HomeState extends State<Home> {
       return null;
     }
   }
+  @override
+  void initState(){ //realizar altecao antes de carregar metodo build
+    super.initState();
 
+  }
 
   @override
   Widget build(BuildContext context) {
