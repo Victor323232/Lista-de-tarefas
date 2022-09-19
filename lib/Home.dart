@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:async';
+import 'dart:io';
+import 'dart:convert';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,19 +14,37 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   List _tarefas = [];
-  void _carregarTarefas(){
-    _tarefas = [];
-    for( int i = 0; i < 10;i++ ){
-      Map<String, dynamic> tarefa = Map();
-      tarefa["titulo"] = "Titulo ${i} Lorem";
-      tarefa["descricao"] = "Descricao ${i} Lorem";
-      _tarefas.add(tarefa);
-    }
+
+  _getFile() async {
+    final diretorio = await getApplicationDocumentsDirectory();
+    return File("${diretorio.path}/dados.json"); //caminho diretorio
   }
+
+  _salvarTarefa() async{
+    var arquivo = await _getFile();
+
+    String dados = jsonEncode(_tarefas); //convercao
+    arquivo.writeAsString(dados); //salvar tarefas
+
+    Map<String, dynamic> tarefa = Map();
+    tarefa["titulo"] = "Ir ao mercado;"
+    tarefa["realizada"] = false;
+    _tarefas.add(tarefa);
+  }
+  _lerTarefa( ) async {
+    var arquivo = await _getFile();
+  }
+
+
+  // void _carregarTarefas(){
+  //   _tarefas = [];
+  //   for( int i = 0; i < 10;i++ ){
+  //   }
+ // }
 
   @override
   Widget build(BuildContext context) {
-    _carregarTarefas(); //retorna tarefas
+    //_tarefas(); //retorna tarefas
     return Scaffold(
       appBar: AppBar(
         title: Text("Lista de tarefas"),
@@ -33,11 +55,10 @@ class _HomeState extends State<Home> {
         Expanded(
         child: ListView.builder(
           itemCount: _tarefas.length,
-          itemBuilder: (context, indice){
-            Map<String, dynamic> item = _tarefas[indice];
+          itemBuilder: (context, index){
+            // Map<String, dynamic> item = _tarefas[indice];
             return ListTile(
-              title: Text(_tarefas[indice]["titulo"]),
-              subtitle: Text(_tarefas[indice]["descricao"]),
+              title: Text(_tarefas [index] ),
             );
           },
 
