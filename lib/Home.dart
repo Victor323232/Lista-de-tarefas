@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
 
   List _tarefas = [];
 
-  Future<File> _getFile() async {
+  Future<File>_getFile() async {
     final diretorio = await getApplicationDocumentsDirectory();
     return File("${diretorio.path}/dados.json"); //caminho diretorio
   }
