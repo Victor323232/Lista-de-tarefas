@@ -34,7 +34,8 @@ class _HomeState extends State<Home> {
   _lerTarefa( ) async {
     try{ //tentar ler uma tarefa
         final arquivo = await _getFile();
-        arquivo.readAsString(); //recuperar arquivo
+        return arquivo.readAsString(); //recuperar arquivo
+
     }catch(e){
       return null;
     }
@@ -42,7 +43,11 @@ class _HomeState extends State<Home> {
   @override
   void initState(){ //realizar altecao antes de carregar metodo build
     super.initState();
-
+    _lerTarefa().then((dados){ //entao
+      setState(() {
+        _tarefas = jsonDecode (dados);
+      });
+    });
   }
 
   @override
