@@ -21,14 +21,18 @@ class _HomeState extends State<Home> {
     return File("${diretorio.path}/dados.json"); //caminho diretorio
   }
 
+  _salvarTarefa(){
+    String textoDigitado = _controllerTarefa.text;//recuperar texto digitado pelo usuario
+    //criar dados
+    Map<String, dynamic> tarefa = Map();
+    tarefa["titulo"] = textoDigitado;
+    tarefa["realizada"] = false;
+
+    _tarefas.add(tarefa);
+  }
 
   _salvarArquivo() async{
     var arquivo = await _getFile();
-    //criar dados
-    Map<String, dynamic> tarefa = Map();
-    tarefa["titulo"] = "Ir ao mercado";
-    tarefa["realizada"] = false;
-    _tarefas.add(tarefa);
 
     String dados = json.encode(_tarefas); //convercao
     arquivo.writeAsString(dados); //salvar tarefas
