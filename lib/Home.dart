@@ -66,10 +66,11 @@ class _HomeState extends State<Home> {
       key: Key(item),
       direction: DismissDirection.endToStart,
       onDismissed: (direction){
-
+        //recupera ultimo item excluido
+        _ultimoTarefaRemovida =_tarefas[index];
         //remover item da lista
         _tarefas.removeAt(index);
-        _salvarArquivo();
+         _salvarArquivo();
 
         //snackbar
         final snackbar = SnackBar(
@@ -78,7 +79,11 @@ class _HomeState extends State<Home> {
           action: SnackBarAction(
             label: "Desfazer",
             onPressed: (){
-
+              //insere novamente item removido na lista
+              setState(() {
+                _tarefas.insert(index, _ultimoTarefaRemovida);
+              });
+              _salvarArquivo();
             },
           ),
         );
