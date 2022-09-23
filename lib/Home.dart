@@ -60,15 +60,23 @@ class _HomeState extends State<Home> {
   }
 
   Widget criarItemLista(context,index) {
-    return CheckboxListTile(
-      title: Text( _tarefas [index] ['titulo'] ),
-      value: _tarefas [index] ['realizada'],
-      onChanged: (valorAlterado){
-        setState(() {
-          _tarefas [index] ['realizada'] = valorAlterado;
-        });
-        _salvarArquivo();
-      },
+    final item = _tarefas[index]["titulo"] + _tarefas[index]["realizada"].toString();
+    return Dismissible(
+      key: Key(item),
+      direction: DismissDirection.endToStart,
+      background: Container(
+        color: Colors.red,
+      ),
+      child: CheckboxListTile(
+        title: Text( _tarefas [index] ['titulo'] ),
+        value: _tarefas [index] ['realizada'],
+        onChanged: (valorAlterado){
+          setState(() {
+            _tarefas [index] ['realizada'] = valorAlterado;
+          });
+          _salvarArquivo();
+        },
+      ),
     );
     // return ListTile(
     //   title: Text( _tarefas [index] ['titulo'] ),
