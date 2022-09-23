@@ -62,7 +62,7 @@ class _HomeState extends State<Home> {
 
   Widget criarItemLista(context,index) {
 
-    //final item = _tarefas[index]["titulo"]; chave igual e gerar erro ao inserir item novamente
+    //final item = _tarefas[index]["titulo"]; chave igual e gera erro ao inserir item novamente
     return Dismissible(
       key: Key(DateTime.now().millisecondsSinceEpoch.toString()),//chave sempre diferente
       direction: DismissDirection.endToStart,
