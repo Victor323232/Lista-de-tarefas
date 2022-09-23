@@ -14,6 +14,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   List _tarefas = [];
+  Map<String, dynamic> _ultimoTarefaRemovida =Map();
    TextEditingController _controllerTarefa = TextEditingController();
 
   Future<File> _getFile() async {
