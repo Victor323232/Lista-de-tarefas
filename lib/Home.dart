@@ -74,7 +74,7 @@ class _HomeState extends State<Home> {
           setState(() {
             _tarefas [index] ['realizada'] = valorAlterado;
           });
-          _salvarArquivo();
+           _salvarArquivo();
         },
       ),
     );
