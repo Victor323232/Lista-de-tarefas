@@ -60,12 +60,27 @@ class _HomeState extends State<Home> {
   }
 
   Widget criarItemLista(context,index) {
-    final item = _tarefas[index]["titulo"] + _tarefas[index]["realizada"].toString();
+    final item = _tarefas[index]["titulo"];
     return Dismissible(
       key: Key(item),
       direction: DismissDirection.endToStart,
+      onDismissed: (direction){
+        //remover tarefa
+        _tarefas.removeAt(index);
+        _salvarArquivo();
+      },
       background: Container(
         color: Colors.red,
+        padding: EdgeInsets.all(16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Icon(
+                Icons.delete,
+              color: Colors.white,
+            )
+          ],
+        ),
       ),
       child: CheckboxListTile(
         title: Text( _tarefas [index] ['titulo'] ),
