@@ -65,10 +65,17 @@ class _HomeState extends State<Home> {
       key: Key(item),
       direction: DismissDirection.endToStart,
       onDismissed: (direction){
-        //remover tarefa
+
+        //remover item da lista
         _tarefas.removeAt(index);
         _salvarArquivo();
+
+        //snackbar
+        final snackbar = SnackBar(
+          content: Text("Tarefa Removida!!"),
+        )
       },
+
       background: Container(
         color: Colors.red,
         padding: EdgeInsets.all(16),
