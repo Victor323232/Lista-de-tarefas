@@ -74,6 +74,12 @@ class _HomeState extends State<Home> {
         final snackbar = SnackBar(
           content: Text("Tarefa Removida!!"),
           duration: Duration(seconds: 5),
+          action: SnackBarAction(
+            label: "Desfazer",
+            onPressed: (){
+
+            },
+          ),
         );
         Scaffold.of(context).showSnackBar(snackbar);
       },
